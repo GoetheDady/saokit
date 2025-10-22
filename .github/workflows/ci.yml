@@ -1,0 +1,61 @@
+# CI 工作流 - 持续集成
+# 在每次推送和 Pull Request 时运行测试和构建
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # 测试和构建任务
+  test-and-build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    # 检出代码
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    # 设置 Node.js 环境
+    - name: 设置 Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+    
+    # 安装 pnpm
+    - name: 安装 pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: latest
+    
+    # 安装依赖
+    - name: 安装依赖
+      run: pnpm install --frozen-lockfile
+    
+    # 运行代码检查
+    - name: 运行 ESLint 检查
+      run: pnpm run lint
+    
+    # 运行测试
+    - name: 运行测试
+      run: pnpm run test
+    
+    # 构建项目
+    - name: 构建项目
+      run: pnpm run build
+    
+    # 上传构建产物（仅在 Node.js 20.x 时执行）
+    - name: 上传构建产物
+      if: matrix.node-version == '20.x'
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: dist/
+        retention-days: 7

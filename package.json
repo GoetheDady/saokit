@@ -14,7 +14,12 @@
     "dev": "rollup -c -w",
     "test": "jest",
     "lint": "eslint src --ext .ts",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "release:patch": "npm version patch && git push --follow-tags",
+    "release:minor": "npm version minor && git push --follow-tags",
+    "release:major": "npm version major && git push --follow-tags",
+    "preversion": "pnpm run test && pnpm run lint",
+    "postversion": "echo '✅ 版本更新完成，请等待 GitHub Actions 自动发布到 npm'"
   },
   "keywords": [
     "websocket",
@@ -24,18 +29,19 @@
     "communication",
     "typescript"
   ],
-  "author": "",
+  "author": "gedesiwen",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/saokit.git"
+    "url": "https://github.com/GoetheDady/saokit.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/saokit/issues"
+    "url": "https://github.com/GoetheDady/saokit/issues"
   },
-  "homepage": "https://github.com/your-username/saokit#readme",
+  "homepage": "https://github.com/GoetheDady/saokit#readme",
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
+    "@eslint/js": "^9.38.0",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",

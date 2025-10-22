@@ -261,7 +261,7 @@ export class SaoKit {
         try {
           // 再次尝试连接。
           await this.connect();
-        } catch (error) {
+        } catch {
           // 如果连接尝试失败，将从 `onclose` 处理程序再次调用此方法，从而有效地安排下一次尝试。
         }
       }, this.options.reconnectInterval);

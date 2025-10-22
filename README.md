@@ -1,32 +1,23 @@
 # SaoKit
 
-**SaoKit** 是一个现代化的、轻量级的 WebSocket 库，专为 Node.js 和浏览器环境设计。它提供了简单易用的 API，并内置了自动重连和心跳检测等强大功能，让您能够轻松构建稳定、可靠的实时应用。
+一个轻量级、高性能的 WebSocket 客户端库，提供自动重连、心跳检测和事件管理功能。
 
-[![npm version](https://img.shields.io/npm/v/saokit.svg)](https://www.npmjs.com/package/saokit)
-[![license](https://img.shields.io/npm/l/saokit.svg)](https://github.com/your-username/saokit/blob/main/LICENSE)
+## 特性
 
-## ✨ 功能特性
+- 🚀 轻量级，零依赖
+- 🔄 自动重连机制
+- 💓 内置心跳检测
+- 📡 事件驱动架构
+- 🛡️ TypeScript 支持
+- 📦 支持多种模块格式 (ES Module, CommonJS, UMD)
 
-- **自动重连**: 在连接意外断开时，自动尝试重新连接，保证服务的持续性。
-- **心跳检测**: 定期发送心跳消息，防止因网络空闲而导致连接被中断。
-- **Promise 化连接**: `connect()` 方法返回一个 Promise，让您可以用 `async/await` 优雅地处理连接逻辑。
-- **丰富的事件系统**: 提供 `open`, `close`, `error`, `message`, `reconnect` 等多种事件，全面掌控连接状态。
-- **跨平台支持**: 同时支持 Node.js 和浏览器环境，一套代码多端运行。
-- **TypeScript 支持**: 提供完整的 TypeScript 类型定义，带来更好的开发体验和代码健壮性。
-- **轻量级设计**: 核心代码简洁，无多余依赖，易于集成和使用。
-
-## 📦 安装
-
-使用 pnpm、npm 或 yarn 安装 SaoKit：
+## 安装
 
 ```bash
-# 使用 pnpm
-pnpm install saokit
-
-# 使用 npm
 npm install saokit
-
-# 使用 yarn
+# 或
+pnpm add saokit
+# 或
 yarn add saokit
 ```
 
