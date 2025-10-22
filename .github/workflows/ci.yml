@@ -22,18 +22,18 @@ jobs:
     - name: 检出代码
       uses: actions/checkout@v4
     
+    # 安装 pnpm（必须在设置 Node.js 之前）
+    - name: 安装 pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: latest
+    
     # 设置 Node.js 环境
     - name: 设置 Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-    
-    # 安装 pnpm
-    - name: 安装 pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: latest
     
     # 安装依赖
     - name: 安装依赖
